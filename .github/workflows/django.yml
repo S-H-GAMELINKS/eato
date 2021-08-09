@@ -44,5 +44,7 @@ jobs:
       run: |
         python manage.py test
       env:
-        POSTGRES_HOST: db
-        POSTGRES_PORT: 5432
+        DB_HOST: 127.0.0.1
+        DB_PASSWORD: postgres
+        DB_USER: postgres
+        REDIRECT_DOMAINS: red.localhost:3000/
