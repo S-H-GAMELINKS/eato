@@ -12,6 +12,10 @@ class RestaurantModelTestCase(TestCase):
         self.valid_name = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
         self.valid_address = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
         self.valid_tel_number = 'xxxxxxxxxxxxxxxxxxxx'
+        self.assert_id = self.restaurant_1.id
+        self.assert_name = self.restaurant_1.name
+        self.assert_address = self.restaurant_1.address
+        self.assert_tel_number = self.restaurant_1.tel_number
 
     def test_isnot_empty(self):
         restaurants = Restaurant.objects.all()
@@ -48,3 +52,10 @@ class RestaurantModelTestCase(TestCase):
         self.assertEqual(save_restaurant.name, self.valid_name)
         self.assertEqual(save_restaurant.address, self.valid_address)
         self.assertEqual(save_restaurant.tel_number, self.valid_tel_number)
+
+    def test_get_one_restaurant(self):
+        r = Restaurant.objects.get(pk=1)
+        self.assertEqual(self.assert_id, r.id)
+        self.assertEqual(self.assert_name, r.name)
+        self.assertEqual(self.assert_address, r.address)
+        self.assertEqual(self.assert_tel_number, r.tel_number)
