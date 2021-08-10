@@ -16,8 +16,14 @@ class RestaurantViewTestCase(TestCase):
         url = reverse('restaurants:index')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.assert_name)
+        self.assertContains(response, self.assert_address)
+        self.assertNotContains(response, self.assert_tel_number)
 
     def test_restaurants_detail_view_response(self):
         url = reverse('restaurants:detail', args=(self.restaurant_1.id,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.assert_name)
+        self.assertContains(response, self.assert_address)
+        self.assertContains(response, self.assert_tel_number)
