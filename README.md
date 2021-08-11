@@ -33,7 +33,7 @@ docker-compose build
 データベースにこれまでのマイグレーションファイルの変更を適用します。
 
 ```bash
-docker-compose run web python manage.py migrate
+docker-compose run --rm web python manage.py migrate
 ```
 
 エラーなどなく終了すればOKです。
@@ -61,7 +61,7 @@ docker-compose up
 `restaurants`の他にアプリを作る場合は以下のコマンドを実行します。
 
 ```bash
-docker-compose run web python manage.py startapp <作成したいアプリ名>
+docker-compose run --rm web python manage.py startapp <作成したいアプリ名>
 ```
 
 アプリを追加するのは`restasyurants`のように一塊の処理を実装したい時などになります。
@@ -72,7 +72,7 @@ docker-compose run web python manage.py startapp <作成したいアプリ名>
 テストを実行して、変更した内容でた正しく動作しているか確認する際には、以下のコマンドを実行します。
 
 ```bash
-docker-compose run web python manage.py test
+docker-compose run --rm web python manage.py test
 ```
 
 #### モデルからマイグレーションファイルを作成
@@ -80,7 +80,7 @@ docker-compose run web python manage.py test
 新規作成したモデルをもとにマイグレーションファイルを作成する場合は以下のコマンドを実行します。
 
 ```bash
-docker-compose run web python manage.py makemigrations <モデルを編集したアプリ名>
+docker-compose run --rm web python manage.py makemigrations <モデルを編集したアプリ名>
 ```
 
 アプリ名の部分には`restaurants`や`users`など変更したモデルが保存されているディレクトリ名を渡します。
@@ -90,5 +90,5 @@ docker-compose run web python manage.py makemigrations <モデルを編集した
 マイグレーションファイルを作成後、データベースに変更を適用する場合は以下のコマンドを実行します。
 
 ```bash
-docker-compose run web python manage.py migrate
+docker-compose run --rm web python manage.py migrate
 ```
