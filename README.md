@@ -38,6 +38,16 @@ docker-compose run --rm web python manage.py migrate
 
 エラーなどなく終了すればOKです。
 
+#### ダミーデータの投入
+
+データベースにダミーのデータを登録します。
+
+```bash
+docker-compose run --rm web python manage.py seed restaurants --number=100
+```
+
+上記のコマンドでは飲食店のダミーデータを100件分データベースに作成しています。
+
 ##### アプリを起動してみる。
 
 最後に`docker-compose up`をターミナルで実行して、アプリを起動してみましょう。
