@@ -18,9 +18,27 @@ git clone git@github.com:S-H-GAMELINKS/eato.git
 
 ```
 
+##### Googleログイン用の設定
+
+ダウンロードしてきた`eato`ディレクトリまでターミナルで移動しましょう。
+
+まずは`.env.template`をコピーして`.env`を作成します。
+コマンドで作成する場合は以下のコマンドで`.env`を作成しましょう。
+
+```bash
+cp .env.template .env.production
+```
+
+`.env`作成後、以下のように必要なキーなどを追加します。
+
+```
+GOOGLE_CLIENT_ID=<Google OauthのクライアントID>
+GOOGLE_SECRET=<Google Oauthのシークレット>
+```
+
 ##### Dockerコンテナのイメージをビルド
 
-ダウンロードしてきた`eato`ディレクトリまでターミナルで移動し、`docker-compose build`コマンドでコンテナのイメージをビルドします。
+`docker-compose build`コマンドでコンテナのイメージをビルドします。
 
 ```bash
 docker-compose build

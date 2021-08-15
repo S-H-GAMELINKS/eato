@@ -17,6 +17,8 @@ services:
         POSTGRES_USER: "postgres"
         POSTGRES_PASSWORD: "postgres"
         POSTGRES_HOST: "db"
+        GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
+        GOOGLE_SECRET: "${GOOGLE_SECRET}"
     volumes:
       - .:/code
     ports:
