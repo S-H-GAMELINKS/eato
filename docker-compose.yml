@@ -19,6 +19,7 @@ services:
         POSTGRES_HOST: "db"
         GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
         GOOGLE_SECRET: "${GOOGLE_SECRET}"
+        HTTP_PROTOCOL: "http"
     volumes:
       - .:/code
     ports:
