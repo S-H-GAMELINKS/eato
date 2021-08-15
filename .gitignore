@@ -2,3 +2,5 @@
 /*/*/__pycache__
 .env
 /production
+/postgres-data/*
+!/postgres-data/.keep
