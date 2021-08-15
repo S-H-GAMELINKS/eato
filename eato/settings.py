@@ -119,6 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_DEFAULT_HTTP_PROTOCOL=os.getenv('HTTP_PROTOCOL')
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
