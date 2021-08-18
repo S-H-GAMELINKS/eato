@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
-from restaurants.models import Restaurant
+from django.contrib.auth.models import User
+from restaurants.models import Restaurant, Favorite
 
 # Create your tests here.
 class RestaurantModelTestCase(TestCase):
@@ -59,3 +60,41 @@ class RestaurantModelTestCase(TestCase):
         self.assertEqual(self.assert_name, r.name)
         self.assertEqual(self.assert_address, r.address)
         self.assertEqual(self.assert_tel_number, r.tel_number)
+
+class FavoriteModelTestCase(TestCase):
+    fixtures = ['restaurants_model_testdata.json']
+    
+    def setUp(self):
+        super(FavoriteModelTestCase, self).setUp()
+        self.restaurant = Restaurant.objects.get(pk=1)
+        self.favorite = Favorite.objects.get(pk=1)
+        self.user = User.objects.get(pk=1)
+
+    def test_check_is_favorite(self):
+        result = self.favorite.is_favorited(self.user, self.restaurant)
+        self.assertFalse(result)
+
+        self.favorite.favorite()
+        result = self.favorite.is_favorited(self.user, self.restaurant)
+        self.assertTrue(result)
+
+        self.favorite.unfavorite()
+        result = self.favorite.is_favorited(self.user, self.restaurant)
+        self.assertFalse(result)
+
+    def test_favorite_restaurant(self):
+        result = self.favorite.is_favorited(self.user, self.restaurant)
+        self.assertFalse(result)
+
+        self.favorite.favorite()
+        result = self.favorite.is_favorited(self.user, self.restaurant)
+        self.assertTrue(result)
+
+    def test_unfavorite_restaurant(self):
+        self.favorite.favorite()
+        result = self.favorite.is_favorited(self.user, self.restaurant)
+        self.assertTrue(result)
+
+        self.favorite.unfavorite()
+        result = self.favorite.is_favorited(self.user, self.restaurant)
+        self.assertFalse(result)
