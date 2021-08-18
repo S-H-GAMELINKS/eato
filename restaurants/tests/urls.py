@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse, resolve
 from restaurants.models import Restaurant
-from restaurants.views import index, detail
+from restaurants.views import index, detail, favorites
 
 class RestaurantUrlTestCase(TestCase):
     fixtures = ['restaurants_url_testdata.json']
@@ -17,3 +17,7 @@ class RestaurantUrlTestCase(TestCase):
     def test_restaurants_detail_url(self):
         url = reverse('restaurants:detail', args=(self.restaurant_1.id,))
         self.assertEqual(resolve(url).func, detail)
+
+    def test_restaurants_favorites_url(self):
+        url = reverse('restaurants:favorites', kwargs={'restaurant_id': self.restaurant_1.id})
+        self.assertEqual(resolve(url).func, favorites)
