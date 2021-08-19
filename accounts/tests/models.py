@@ -13,7 +13,7 @@ class AccountModelTestCase(TestCase):
 
     def test_isnot_empty(self):
         users = User.objects.all()
-        self.assertEqual(len(users.count()), 1)
+        self.assertEqual(users.count(), 1)
 
     def test_fixture(self):
         self.assertEqual(self.user.username, self.username)
