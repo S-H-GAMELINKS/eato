@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load account %}
+
+{% block content %}
+  <div class="container">
+  <ul class="nav nav-tabs mt-5">
+    <li class="nav-item">
+      <a class="nav-link active" href="#profile" data-toggle="tab" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#favorites" data-toggle="tab" role="tab" aria-controls="favorites" aria-selected="false">Favorite's</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#reviews" data-toggle="tab" role="tab" aria-controls="reviews" aria-selected="false">Review's</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <h2>UserName</h2>
+      {{user.username}}
+      <h2>Email</h2>
+      {{user.email}}
+    </div>
+    <div class="tab-pane" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+        Favorite
+    </div>
+    <div class="tab-pane" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+      Review
+    </div>
+  </div>
+  </div>
+
+  <script>
+    $(function () {
+      $('#myTab li:last-child a').tab('show')
+    })
+  </script>
+{% endblock %}

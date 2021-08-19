@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'restaurants.apps.RestaurantsConfig',
+    'accounts.apps.AccountsConfig',
     'django_seed',
     'allauth',
     'allauth.account',
