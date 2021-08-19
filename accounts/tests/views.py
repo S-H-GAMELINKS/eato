@@ -21,6 +21,8 @@ class AccountViewTestCase(TestCase):
         url = reverse('accounts:mypage')
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.user, SimpleLazyObject(self.user))
+        self.assertContains(response, 'Profile')
+        self.assertContains(response, 'Favorite')
+        self.assertContains(response, 'Review')
 
         
