@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.utils.functional import SimpleLazyObject
 from django.contrib.auth.models import User, AnonymousUser
+from restaurants.models import Restaurant, Favorite
 
 class AccountViewTestCase(TestCase):
     fixtures = ['accounts_view_testdata.json']
@@ -9,6 +10,8 @@ class AccountViewTestCase(TestCase):
     def setUp(self):
         super(AccountViewTestCase, self).setUp()
         self.user = User.objects.get(pk=1)
+        self.restaurant = Restaurant.objects.get(pk=1)
+        self.favorite = Favorite.objects.get(pk=1)
 
     def test_accounts_mypage_view_response_with_anonymous_user(self):
         url = reverse('accounts:mypage')
@@ -24,5 +27,7 @@ class AccountViewTestCase(TestCase):
         self.assertContains(response, 'Profile')
         self.assertContains(response, 'Favorite')
         self.assertContains(response, 'Review')
+        self.assertContains(response, self.restaurant.name)
+        self.assertContains(response, self.restaurant.address)
 
         
