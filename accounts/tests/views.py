@@ -30,4 +30,34 @@ class AccountViewTestCase(TestCase):
         self.assertContains(response, self.restaurant.name)
         self.assertContains(response, self.restaurant.address)
 
-        
+    def test_accounts_mypage_edit_view_response_with_anonymous_user(self):
+        url = reverse('accounts:mypage_edit')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_accounts_mypage_edit_view_response_with_login_user(self):
+        client = Client()
+        client.force_login(self.user)
+        url = reverse('accounts:mypage_edit')
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Name')
+        self.assertContains(response, 'Email')
+        self.assertContains(response, self.user.username)
+        self.assertContains(response, self.user.email)
+
+    def test_accounts_mypage_update_view_response_with_anonymous_user(self):
+        url = reverse('accounts:mypage_update')
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_accounts_mypage_update_view_response_with_login_user(self):
+        client = Client()
+        client.force_login(self.user)
+        url = reverse('accounts:mypage_update')
+
+        response = client.post(url, data={'name': 'user2', 'email': 'user2@example.com'})
+        user = User.objects.get(pk=1)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(user.username, 'user2')
+        self.assertEqual(user.email, 'user2@example.com')

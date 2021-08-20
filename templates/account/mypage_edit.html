@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load account %}
+
+{% block content %}
+  <div class="container">
+    <form class="login" method="POST" action="{% url 'accounts:mypage_update' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input name="name" type="name" class="form-control" value="{{user.username}}">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input name="email" type="email" class="form-control" value="{{user.email}}">
+      </div>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+{% endblock %}

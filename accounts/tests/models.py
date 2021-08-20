@@ -18,3 +18,11 @@ class AccountModelTestCase(TestCase):
     def test_fixture(self):
         self.assertEqual(self.user.username, self.username)
         self.assertEqual(self.user.email, self.email)
+
+    def test_update_accounts(self):
+        user = self.user
+        user.username = 'user2'
+        user.email = 'user2@example.com'
+        user.save()
+        self.assertNotEqual(user.username, self.username)
+        self.assertNotEqual(user.email, self.email)
