@@ -23,7 +23,21 @@
       {{user.email}}
     </div>
     <div class="tab-pane" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
-        Favorite
+        <h2>Favorite</h2>
+        <div class="row">
+          {% for favorite in favorite_list %}
+            <div class="col-4 mt-4">
+                <div class="card" style="width: 18rem;">
+                    <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ favorite.restaurant.name }}</h5>
+                      <p class="card-text">{{ favorite.restaurant.address }}</p>
+                      <a href="{% url 'restaurants:detail' favorite.restaurant_id %}" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+            </div>
+          {% endfor %}
+        </div>
     </div>
     <div class="tab-pane" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
       Review
