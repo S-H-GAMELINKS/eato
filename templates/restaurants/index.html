@@ -4,16 +4,14 @@
 
 <div class="container mt-5">
 
-  <form>
+  <form method="get" action="{% url 'restaurants:index' %}">
       <div class="form-row">
           <div class="form-group col-md-6">
-              <input type="text" class="form-control" id="inputCity">
-          </div>
-          <div class="form-group col-md-4">
-              <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-              </select>
+              {% if keyword %}
+                <input name="keyword" type="text" class="form-control" value="{{ keyword }}">
+              {% else %}
+                <input name="keyword" type="text" class="form-control">
+              {% endif %}
           </div>
           <div class="form-group col-md-2">
               <button type="submit" class="btn btn-success">Search</button>
@@ -42,24 +40,40 @@
       <ul class="pagination d-flex justify-content-center">
         {% if restaurant_list.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ restaurant_list.previous_page_number }}">Previous</a>
+            {% if keyword %}
+              <a class="page-link" href="?page={{ restaurant_list.previous_page_number }}&keyword={{ keyword }}">Previous</a>
+            {% else %}
+              <a class="page-link" href="?page={{ restaurant_list.previous_page_number }}">Previous</a>
+            {% endif %}
           </li>
         {% endif %}
         {% for page_num in restaurant_list.paginator.page_range %}
             {% if page_num == restaurant_list.number %}
               <li class="page-item active">
-                <a class="page-link" href="?page={{ page_num }}">{{page_num}}</a>
+                {% if keyword %}
+                  <a class="page-link" href="?page={{ page_num }}&keyword={{ keyword }}">{{page_num}}</a>
+                {% else %}
+                  <a class="page-link" href="?page={{ page_num }}">{{page_num}}</a>
+                {% endif %}
               </li>
             {% else %}
               <li class="page-item">
-                <a class="page-link" href="?page={{ page_num }}">{{page_num}}</a>
+                {% if keyword %}
+                  <a class="page-link" href="?page={{ page_num }}&keyword={{ keyword }}">{{page_num}}</a>
+                {% else %}
+                  <a class="page-link" href="?page={{ page_num }}">{{page_num}}</a>
+                {% endif %}
               </li>
             {% endif %}
           </li>
         {% endfor %}
         {% if restaurant_list.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ restaurant_list.paginator.num_pages }}">Next</a>
+            {% if keyword %}
+              <a class="page-link" href="?page={{ restaurant_list.paginator.num_pages }}&keyword={{ keyword }}">Next</a>
+            {% else %}
+              <a class="page-link" href="?page={{ restaurant_list.paginator.num_pages }}">Next</a>
+            {% endif %}
           </li>
         {% endif %}
       </ul>
