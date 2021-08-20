@@ -1,9 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator
 from .models import Restaurant, Favorite
 
 def index(request):
     r_list = Restaurant.objects.all()
-    context = {'restaurant_list': r_list}
+
+    paginator = Paginator(r_list, 12)
+
+    page_number = request.GET.get('page')
+    r_page_obj = paginator.get_page(page_number)
+
+    context = {'restaurant_list': r_page_obj}
     return render(request, 'restaurants/index.html', context)
 
 def detail(request, restaurant_id=id):
