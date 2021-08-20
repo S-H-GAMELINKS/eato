@@ -1,16 +1,22 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .models import Restaurant, Favorite
 
 def index(request):
-    r_list = Restaurant.objects.all()
+    keyword = request.GET.get('keyword')
+
+    if keyword:
+        r_list = Restaurant.objects.filter(name__icontains=keyword)
+    else:
+        r_list = Restaurant.objects.all()
 
     paginator = Paginator(r_list, 12)
 
     page_number = request.GET.get('page')
     r_page_obj = paginator.get_page(page_number)
 
-    context = {'restaurant_list': r_page_obj}
+    context = {'restaurant_list': r_page_obj, 'keyword': keyword}
     return render(request, 'restaurants/index.html', context)
 
 def detail(request, restaurant_id=id):
