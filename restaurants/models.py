@@ -25,3 +25,8 @@ class Favorite(models.Model):
     def unfavorite(self):
         self.status = 0
         self.save()
+
+class Review(models.Model):
+    content = models.TextField(max_length=500);
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
