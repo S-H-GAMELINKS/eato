@@ -1,7 +1,16 @@
 from django.contrib import admin
 from .models import Restaurant, Favorite
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
-class RestaurantAdmin(admin.ModelAdmin):
+class RestaurantResource(resources.ModelResource):
+
+    class Meta:
+        model = Restaurant
+
+class RestaurantAdmin(ImportExportModelAdmin):
+    resource_class = RestaurantResource
+
     list_display = ('name', 'address', 'tel_number', 'favorites',)
 
     readonly_fields = ('favorites', )
