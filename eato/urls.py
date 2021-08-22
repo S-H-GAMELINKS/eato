@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import include, path
 from eato.views import lp
 
+admin.site.site_title = 'タイトルタグ' 
+admin.site.site_header = 'Eato 管理画面' 
+admin.site.index_title = 'メニュー'
+
 urlpatterns = [
     path('', lp, name='lp'),
     path('restaurants/', include('restaurants.urls')),
