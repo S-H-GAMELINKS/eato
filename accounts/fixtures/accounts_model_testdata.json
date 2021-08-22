@@ -7,5 +7,13 @@
             "email": "user1@example.com",
             "password": "password"
         }
+    },
+    {
+        "pk": 1,
+        "model": "accounts.profile",
+        "fields": {
+            "user_id": 1,
+            "bio": "user1bio"
+        }
     }
 ]
