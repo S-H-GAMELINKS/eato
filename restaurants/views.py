@@ -7,9 +7,9 @@ def index(request):
     keyword = request.GET.get('keyword')
 
     if keyword:
-        r_list = Restaurant.objects.filter(name__icontains=keyword)
+        r_list = Restaurant.objects.order_by('id').filter(name__icontains=keyword)
     else:
-        r_list = Restaurant.objects.all()
+        r_list = Restaurant.objects.order_by('id').all()
 
     paginator = Paginator(r_list, 12)
 
