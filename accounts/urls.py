@@ -3,8 +3,8 @@ from . import views
 
 app_name = 'accounts'
 urlpatterns = [
-    path('', views.mypage, name='mypage'),
-    path('_edit', views.mypage_edit, name='mypage_edit'),
-    path('_update', views.mypage_update, name='mypage_update'),
-    path('/<int:user_id>', views.detail, name='detail')
+    path('mypage', views.mypage, name='mypage'),
+    path('mypage_edit', views.mypage_edit, name='mypage_edit'),
+    path('mypage_update', views.mypage_update, name='mypage_update'),
+    path('<int:user_id>', views.detail, name='detail')
 ]
