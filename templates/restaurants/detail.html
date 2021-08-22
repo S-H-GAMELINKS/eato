@@ -77,7 +77,7 @@
 
             <form action="{% url 'restaurants:favorites' restaurant.id %}" method="post">
               {% csrf_token %}
-              {% if favorite.status != 0 %}
+              {% if favorite != None and favorite.status != 0 %}
                 <button type="submit" class="btn btn-info w-100 mt-3">Unfavortite</button>
               {% else %}
                 <button type="submit" class="btn btn-info w-100 mt-3">Favortite</button>
