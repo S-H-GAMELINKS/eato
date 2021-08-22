@@ -7,5 +7,14 @@
             "address": "restaurant",
             "tel_number": "XXX-XXXX-XXXX"
         }
+    },
+    {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "user1",
+            "email": "user1@example.com",
+            "password": "password"
+        }
     }
 ]
