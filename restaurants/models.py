@@ -7,10 +7,16 @@ class Restaurant(models.Model):
     address = models.CharField(max_length=255)
     tel_number = models.CharField(max_length=20)
 
+    class Meta:
+        verbose_name_plural = "飲食店"
+
 class Favorite(models.Model):
     user= models.ForeignKey(User, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     status = models.IntegerField(null=True)
+
+    class Meta:
+        verbose_name_plural = "お気に入り"
 
     def is_favorited(self, user, restaurant):
         if self.user == user and self.restaurant == restaurant and self.status != 0:
