@@ -61,3 +61,10 @@ class AccountViewTestCase(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(user.username, 'user2')
         self.assertEqual(user.email, 'user2@example.com')
+
+    def test_accounts_mypage_detail(self):
+        url = reverse('accounts:detail', kwargs={'user_id': self.user.id})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, self.user.username)
+        self.assertContains(response, self.user.email)
