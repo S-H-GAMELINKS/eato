@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from restaurants.models import Restaurant, Favorite, Review
 
@@ -35,3 +35,11 @@ def mypage_update(request):
     current_user.save()
 
     return redirect('/accounts/mypage')
+
+def detail(request, user_id=id):
+    user = get_object_or_404(User, pk=user_id)
+
+    favorite_list = Favorite.objects.select_related('restaurant').filter(user=user, status=1)
+    review_list = Review.objects.select_related('restaurant').filter(user=user)
+
+    return render(request, 'account/detail.html', {'user': user, 'favorite_list': favorite_list, 'review_list': review_list})
