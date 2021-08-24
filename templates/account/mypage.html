@@ -21,6 +21,8 @@
       {{user.username}}
       <h2>Email</h2>
       {{user.email}}
+      <h2>bio</h2>
+      {{user.profile.bio}}
 
       <div class="mt-3">
         <a class="btn btn-primary" href="{% url 'accounts:mypage_edit' %}">Edit</a>
