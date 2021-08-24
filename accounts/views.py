@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from restaurants.models import Restaurant, Favorite, Review
+from accounts.models import Profile
 
 def mypage(request):
     if request.user.is_anonymous:
@@ -29,9 +30,11 @@ def mypage_update(request):
 
     name = request.POST.get("name")
     email = request.POST.get("email")
+    bio = request.POST.get("bio")
 
     current_user.username = name
     current_user.email = email
+    current_user.profile.bio = bio
     current_user.save()
 
     return redirect('/accounts/mypage')

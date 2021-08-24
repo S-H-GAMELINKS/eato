@@ -56,11 +56,12 @@ class AccountViewTestCase(TestCase):
         client.force_login(self.user)
         url = reverse('accounts:mypage_update')
 
-        response = client.post(url, data={'name': 'user2', 'email': 'user2@example.com'})
+        response = client.post(url, data={'name': 'user2', 'email': 'user2@example.com', 'bio': 'HALO2'})
         user = User.objects.get(pk=1)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(user.username, 'user2')
         self.assertEqual(user.email, 'user2@example.com')
+        self.assertEqual(user.profile.bio, 'HALO2')
 
     def test_accounts_mypage_detail(self):
         url = reverse('accounts:detail', kwargs={'user_id': self.user.id})
