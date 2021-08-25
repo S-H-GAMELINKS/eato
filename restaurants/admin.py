@@ -32,4 +32,9 @@ class RestaurantAdmin(ImportExportModelAdmin):
         reviews = Review.objects.filter(restaurant=instance)
         return reviews.count()
 
+class ReviewAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Restaurant, RestaurantAdmin)
+admin.site.register(Review, ReviewAdmin)
+
