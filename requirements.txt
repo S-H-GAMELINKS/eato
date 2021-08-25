@@ -3,3 +3,6 @@ psycopg2-binary
 django-seed
 django-allauth
 django-import-export
+pillow
+boto3
+django-storages

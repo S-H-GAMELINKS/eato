@@ -4,3 +4,5 @@
 /production
 /postgres-data/*
 !/postgres-data/.keep
+/media/*
+!/media/.keep
