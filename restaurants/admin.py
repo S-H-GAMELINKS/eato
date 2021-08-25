@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.utils.html import mark_safe
 from django.contrib import admin
 from .models import Restaurant, Favorite, Review
 from import_export import resources
@@ -11,7 +13,7 @@ class RestaurantResource(resources.ModelResource):
 class RestaurantAdmin(ImportExportModelAdmin):
     resource_class = RestaurantResource
 
-    list_display = ('name', 'address', 'tel_number', 'favorites', 'reviews')
+    list_display = ('name', 'address', 'tel_number', 'favorites', 'reviews', 'image_tag')
 
     readonly_fields = ('favorites', 'reviews')
 
@@ -31,6 +33,9 @@ class RestaurantAdmin(ImportExportModelAdmin):
     def reviews(self, instance):
         reviews = Review.objects.filter(restaurant=instance)
         return reviews.count()
+
+    def image_tag(self, instance):
+        return mark_safe('<img src="%s%s" height="150" class="img-fluid" />' % (settings.MEDIA_URL, instance.image))
 
 class ReviewAdmin(admin.ModelAdmin):
     pass
