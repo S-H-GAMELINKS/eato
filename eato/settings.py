@@ -77,6 +77,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -172,7 +173,10 @@ if os.getenv('APP_ENV') == 'production':
     AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
     AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
     AWS_DEFAULT_ACL = 'public-read'
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
+    AWS_S3_CUSTOM_DOMAIN = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/'
+    MEDIA_ROOT = AWS_S3_CUSTOM_DOMAIN
     MEDIA_URL = AWS_S3_CUSTOM_DOMAIN
 else:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    MEDIA_ROOT = BASE_DIR.joinpath('media')
+    MEDIA_URL = '/media/'
