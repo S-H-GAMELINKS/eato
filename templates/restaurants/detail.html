@@ -59,28 +59,28 @@
             <table class="table mt-5">
                 <tbody>
                   <tr>
-                    <th scope="row">Name</th>
+                    <th scope="row">店名</th>
                     <td>{{ restaurant.name }}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Address</th>
+                    <th scope="row">住所</th>
                     <td>{{ restaurant.address }}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Tell</th>
+                    <th scope="row">電話番号</th>
                     <td>{{ restaurant.tel_number }}</td>
                   </tr>
                 </tbody>
             </table>
 
-            <button type="button" class="btn btn-success w-100 mt-3">Add Review</button>
+            <button type="button" class="btn btn-success w-100 mt-3">レビューを書く</button>
 
             <form action="{% url 'restaurants:favorites' restaurant.id %}" method="post">
               {% csrf_token %}
               {% if favorite != None and favorite.status != 0 %}
-                <button type="submit" class="btn btn-info w-100 mt-3">Unfavortite</button>
+                <button type="submit" class="btn btn-info w-100 mt-3">お気に入りから削除</button>
               {% else %}
-                <button type="submit" class="btn btn-info w-100 mt-3">Favortite</button>
+                <button type="submit" class="btn btn-info w-100 mt-3">お気に入りへ追加</button>
               {% endif %}
             </form>
         </div>
