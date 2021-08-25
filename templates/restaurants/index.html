@@ -14,7 +14,7 @@
               {% endif %}
           </div>
           <div class="form-group col-md-2">
-              <button type="submit" class="btn btn-success">Search</button>
+              <button type="submit" class="btn btn-success">検索</button>
           </div>
       </div>
   </form>
@@ -27,7 +27,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{ restaurant.name }}</h5>
                 <p class="card-text">{{ restaurant.address }}</p>
-                <a href="{% url 'restaurants:detail' restaurant.id %}" class="btn btn-primary">Go somewhere</a>
+                <a href="{% url 'restaurants:detail' restaurant.id %}" class="btn btn-primary">お店詳細へ</a>
               </div>
             </div>
       </div>
@@ -41,9 +41,9 @@
         {% if restaurant_list.has_previous %}
           <li class="page-item">
             {% if keyword %}
-              <a class="page-link" href="?page={{ restaurant_list.previous_page_number }}&keyword={{ keyword }}">Previous</a>
+              <a class="page-link" href="?page={{ restaurant_list.previous_page_number }}&keyword={{ keyword }}">前のページ</a>
             {% else %}
-              <a class="page-link" href="?page={{ restaurant_list.previous_page_number }}">Previous</a>
+              <a class="page-link" href="?page={{ restaurant_list.previous_page_number }}">前のページ</a>
             {% endif %}
           </li>
         {% endif %}
@@ -70,9 +70,9 @@
         {% if restaurant_list.has_next %}
           <li class="page-item">
             {% if keyword %}
-              <a class="page-link" href="?page={{ restaurant_list.paginator.num_pages }}&keyword={{ keyword }}">Next</a>
+              <a class="page-link" href="?page={{ restaurant_list.paginator.num_pages }}&keyword={{ keyword }}">次のページ</a>
             {% else %}
-              <a class="page-link" href="?page={{ restaurant_list.paginator.num_pages }}">Next</a>
+              <a class="page-link" href="?page={{ restaurant_list.paginator.num_pages }}">次のページ</a>
             {% endif %}
           </li>
         {% endif %}
