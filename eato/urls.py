@@ -23,12 +23,6 @@ from django.contrib.auth.models import Group
 from allauth.socialaccount.models import SocialToken, SocialAccount, SocialApp
 from allauth.account.models import EmailAddress
 
-admin.site.unregister(Group)
-admin.site.unregister(SocialToken)
-admin.site.unregister(SocialAccount)
-admin.site.unregister(SocialApp)
-admin.site.unregister(EmailAddress)
-
 admin.site.site_title = 'タイトルタグ' 
 admin.site.site_header = 'Eato 管理画面' 
 admin.site.index_title = 'メニュー'
