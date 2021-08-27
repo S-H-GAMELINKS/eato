@@ -1,3 +1,7 @@
+import os
+from django.core.files.storage import default_storage
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from restaurants.models import Restaurant, Favorite, Review
@@ -32,9 +36,20 @@ def mypage_update(request):
     email = request.POST.get("email")
     bio = request.POST.get("bio")
 
+    icon = request.FILES.get("icon")
+
+    if os.getenv('APP_ENV') == 'production':
+        save_icon = default_storage.save(icon.name, icon)
+        uploaded_file_url = f'{settings.MEDIA_URL}{save_icon}'
+    else:
+        fs = FileSystemStorage()
+        filename = fs.save(icon.name, icon)
+        uploaded_file_url = fs.url(filename)
+
     current_user.username = name
     current_user.email = email
     current_user.profile.bio = bio
+    current_user.profile.icon = uploaded_file_url
     current_user.save()
 
     return redirect('/accounts/mypage')
