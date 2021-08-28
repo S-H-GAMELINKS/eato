@@ -38,7 +38,21 @@ class RestaurantAdmin(ImportExportModelAdmin):
         return mark_safe('<img src="%s%s" height="150" class="img-fluid" />' % (settings.MEDIA_URL, instance.image))
 
 class ReviewAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('restaurant', 'user', 'content', 'likes')
+
+    readonly_fields = ('likes',)
+
+    def restaurant(self, instance):
+        return instance.restaurant.name
+
+    def user(self, instance):
+        return instance.user.username
+
+    def content(self, instance):
+        return instance.content
+
+    def likes(self, instance):
+        return instance.like_set.count()
 
 class LikeAdmin(admin.ModelAdmin):
     pass
