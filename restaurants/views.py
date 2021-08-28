@@ -81,8 +81,10 @@ def reviews(request, restaurant_id=id):
 
         review = Review.objects.create(user=current_user, restaurant=restaurant, content=request.POST.get('content'), score=request.POST.get('score'))
         review.save()
-        review_image = ReviewImage.objects.create(user=current_user, restaurant=restaurant, review=review, image=uploaded_file_url)
-        review_image.save()
+
+        if review_image is not None:
+            review_image = ReviewImage.objects.create(user=current_user, restaurant=restaurant, review=review, image=uploaded_file_url)
+            review_image.save()
 
         return redirect('restaurants:detail', restaurant_id=restaurant.id)
     else:
