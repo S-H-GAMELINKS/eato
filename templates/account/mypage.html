@@ -14,6 +14,9 @@
     <li class="nav-item">
       <a class="nav-link" href="#reviews" data-toggle="tab" role="tab" aria-controls="reviews" aria-selected="false">クチコミレビュー</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#review_images" data-toggle="tab" role="tab" aria-controls="reviews" aria-selected="false">画像</a>
+    </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -61,6 +64,17 @@
                     <a href="{% url 'restaurants:detail' review.restaurant_id %}" class="btn btn-primary">お店詳細へ</a>
                   </div>
                 </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="tab-pane" id="review_images" role="tabpanel" aria-labelledby="reviews-tab">
+      <div class="row">
+        {% for review in review_list %}
+          <div class="col-4 mt-4">
+            {% if review.has_image_p %}
+            <img src="{{ review.image  }}" class="img-fluid">
+            {% endif %}
           </div>
         {% endfor %}
       </div>

@@ -27,6 +27,7 @@ class AccountViewTestCase(TestCase):
         self.assertContains(response, 'プロフィール')
         self.assertContains(response, 'お気に入り')
         self.assertContains(response, 'クチコミレビュー')
+        self.assertContains(response, '画像')
         self.assertContains(response, self.restaurant.name)
         self.assertContains(response, self.restaurant.address)
 
