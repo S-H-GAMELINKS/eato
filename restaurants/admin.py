@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.utils.html import mark_safe
 from django.contrib import admin
-from .models import Restaurant, Favorite, Review
+from .models import Restaurant, Favorite, Review, Like
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
@@ -40,6 +40,9 @@ class RestaurantAdmin(ImportExportModelAdmin):
 class ReviewAdmin(admin.ModelAdmin):
     pass
 
+class LikeAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Restaurant, RestaurantAdmin)
 admin.site.register(Review, ReviewAdmin)
-
+admin.site.register(Like, LikeAdmin)

@@ -34,5 +34,14 @@
             "restaurant": 1,
             "user": 1
         }
+    },
+    {
+        "pk": 1,
+        "model": "restaurants.like",
+        "fields": {
+            "user": 1,
+            "restaurant": 1,
+            "review": 1
+        }
     }
 ]
