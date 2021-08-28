@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -34,7 +35,8 @@ class Favorite(models.Model):
         self.save()
 
 class Review(models.Model):
-    content = models.TextField(max_length=500);
+    content = models.TextField(max_length=500)
+    score = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
 
@@ -45,6 +47,14 @@ class Review(models.Model):
             return True
         else:
             return False
+
+    def score_star(self):
+        MAX_SCORE = 5
+
+        if self.score != 0:
+            return "★" * self.score + "☆" * (MAX_SCORE - self.score)
+        else:
+            return "☆" * MAX_SCORE
 
 class Like(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
