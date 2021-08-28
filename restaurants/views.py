@@ -21,13 +21,14 @@ def index(request):
 
 def detail(request, restaurant_id=id):
     restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+    review_list = Review.objects.filter(restaurant=restaurant)
 
     if request.user.is_authenticated:
         current_user = request.user
         favorite = Favorite.objects.filter(user=current_user, restaurant=restaurant).first()
-        return render(request, 'restaurants/detail.html', {'restaurant': restaurant, 'current_user': current_user, 'favorite': favorite})
+        return render(request, 'restaurants/detail.html', {'restaurant': restaurant, 'current_user': current_user, 'favorite': favorite, 'review_list': review_list})
     else:
-        return render(request, 'restaurants/detail.html', {'restaurant': restaurant})
+        return render(request, 'restaurants/detail.html', {'restaurant': restaurant, 'review_list': review_list})
 
 def favorites(request, restaurant_id=id):
     restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
