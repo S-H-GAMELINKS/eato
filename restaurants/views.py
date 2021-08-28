@@ -1,7 +1,11 @@
+import os
+from django.core.files.storage import default_storage
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.db.models import Q
-from .models import Restaurant, Favorite, Review, Like
+from .models import Restaurant, Favorite, Review, ReviewImage, Like
 
 def index(request):
     keyword = request.GET.get('keyword')
@@ -64,8 +68,21 @@ def reviews(request, restaurant_id=id):
         if request.user.is_anonymous:
             return redirect('restaurants:detail', restaurant_id=restaurant.id)
 
+        review_image = request.FILES.get("review_image")
+
+        if review_image is not None:
+            if os.getenv('APP_ENV') == 'production':
+                save_review_image = default_storage.save(review_image.name, review_image)
+                uploaded_file_url = f'{settings.MEDIA_URL}{save_review_image}'
+            else:
+                fs = FileSystemStorage()
+                filename = fs.save(review_image.name, review_image)
+                uploaded_file_url = fs.url(filename)
+
         review = Review.objects.create(user=current_user, restaurant=restaurant, content=request.POST.get('content'), score=request.POST.get('score'))
         review.save()
+        review_image = ReviewImage.objects.create(user=current_user, restaurant=restaurant, review=review, image=uploaded_file_url)
+        review_image.save()
 
         return redirect('restaurants:detail', restaurant_id=restaurant.id)
     else:
