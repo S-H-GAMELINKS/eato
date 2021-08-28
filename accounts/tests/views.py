@@ -24,9 +24,9 @@ class AccountViewTestCase(TestCase):
         url = reverse('accounts:mypage')
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Profile')
-        self.assertContains(response, 'Favorite')
-        self.assertContains(response, 'Review')
+        self.assertContains(response, 'プロフィール')
+        self.assertContains(response, 'お気に入り')
+        self.assertContains(response, 'クチコミレビュー')
         self.assertContains(response, self.restaurant.name)
         self.assertContains(response, self.restaurant.address)
 
