@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.db.models import Avg
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -11,6 +12,13 @@ class Restaurant(models.Model):
 
     class Meta:
         verbose_name_plural = "飲食店"
+
+    def review_avg_score(self):
+        review_avg_score = self.review_set.aggregate(Avg('score'))
+        if review_avg_score['score__avg'] == None or review_avg_score['score__avg'] == 0.0:
+            return 0
+        else:
+            return review_avg_score['score__avg']
 
 class Favorite(models.Model):
     user= models.ForeignKey(User, on_delete=models.CASCADE)
