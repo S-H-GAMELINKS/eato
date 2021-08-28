@@ -67,6 +67,12 @@ class Review(models.Model):
     def likes_count(self):
         return self.like_set.filter(status=1).count()
 
+    def has_image_p(self):
+        return self.reviewimage_set.count() != 0
+
+    def image(self):
+        return self.reviewimage_set.first().image
+
 class Like(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -86,3 +92,9 @@ class Like(models.Model):
     def unlike(self):
         self.status = 0
         self.save()
+
+class ReviewImage(models.Model):
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    image = models.ImageField(null=True, blank=True)
