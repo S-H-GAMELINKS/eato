@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.db.models import Q
-from .models import Restaurant, Favorite
+from .models import Restaurant, Favorite, Review
 
 def index(request):
     keyword = request.GET.get('keyword')
@@ -49,6 +49,22 @@ def favorites(request, restaurant_id=id):
         else:
             fav = Favorite(user=current_user, restaurant=restaurant, status=1)
             fav.save()
+
+        return redirect('restaurants:detail', restaurant_id=restaurant.id)
+    else:
+        return redirect('restaurants:detail', restaurant_id=restaurant.id)
+
+def reviews(request, restaurant_id=id):
+    restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+
+    if request.method == "POST":
+        current_user = request.user
+
+        if request.user.is_anonymous:
+            return redirect('restaurants:detail', restaurant_id=restaurant.id)
+
+        review = Review.objects.create(user=current_user, restaurant=restaurant, content=request.POST.get('content'))
+        review.save()
 
         return redirect('restaurants:detail', restaurant_id=restaurant.id)
     else:
