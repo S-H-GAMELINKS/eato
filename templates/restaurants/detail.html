@@ -61,6 +61,7 @@
 
             <button type="button" class="btn btn-success w-100 mt-3" data-toggle="modal" data-target="#reviewModal">レビューを書く</button>
 
+            {% if user.is_authenticated %}
             <form action="{% url 'restaurants:favorites' restaurant.id %}" method="post">
               {% csrf_token %}
               {% if favorite != None and favorite.status != 0 %}
@@ -69,6 +70,9 @@
                 <button type="submit" class="btn btn-info w-100 mt-3">お気に入りへ追加</button>
               {% endif %}
             </form>
+            {% else %}
+              <button class="btn btn-info w-100 mt-3" data-toggle="modal" data-target="#accountCreateModal">お気に入りへ追加</button>
+            {% endif %}
         </div>
     </div>
 
@@ -107,6 +111,36 @@
           </div>
           <button type="submit" class="btn btn-primary">投稿</button>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="accountCreateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">会員限定の機能です！</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body h-50">
+        <div class="text-center">会員になると以下の機能が使えます！</div>
+        <div class="container mt-3">
+          <ul class="list-group">
+            <li class="list-group-item">レビュー投稿ができる</li>
+            <li class="list-group-item">お店をお気に入りして保存できる</li>
+            <li class="list-group-item">レビューにいいねができる</li>
+            <li class="list-group-item">レビューに投稿した画像が一覧で確認できる</li>
+          </ul>
+
+          <div class="d-flex justify-content-center mt-3">
+            <a class="btn btn-primary btn-lg" href="/accounts/login">
+              会員登録はこちらからできます
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
