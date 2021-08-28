@@ -25,5 +25,23 @@
             "email": "user1@example.com",
             "password": "password"
         }
+    },
+    {
+        "pk": 1,
+        "model": "restaurants.review",
+        "fields": {
+            "content": "HALO",
+            "restaurant": 1,
+            "user": 1
+        }
+    },
+    {
+        "pk": 1,
+        "model": "restaurants.like",
+        "fields": {
+            "user": 1,
+            "restaurant": 1,
+            "review": 1
+        }
     }
 ]
