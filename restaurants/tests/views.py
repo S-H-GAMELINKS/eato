@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.utils.functional import SimpleLazyObject
 from django.contrib.auth.models import User, AnonymousUser
-from restaurants.models import Restaurant, Favorite
+from restaurants.models import Restaurant, Favorite, Review
 from restaurants.views import favorites
 
 class RestaurantViewTestCase(TestCase):
@@ -50,3 +50,23 @@ class RestaurantViewTestCase(TestCase):
         self.assertEqual(count, 1)
         self.assertEqual(last.restaurant.id, self.restaurant_1.id)
         self.assertEqual(last.user.id, self.user.id)
+
+    def test_restaurants_reviews_view_url_with_anonymous_user(self):
+        url = reverse('restaurants:reviews', kwargs={'restaurant_id': self.restaurant_1.id})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+        count = Review.objects.all().count()
+        self.assertEqual(count, 1)
+
+    def test_restaurants_reviews_view_url_with_login_user(self):
+        client = Client()
+        client.force_login(self.user)
+        url = reverse('restaurants:reviews', kwargs={'restaurant_id': self.restaurant_1.id})
+        response = client.post(url, data={'content': 'HALO2'})
+        self.assertEqual(response.status_code, 302)
+        count = Review.objects.all().count()
+        last = Review.objects.last()
+        self.assertEqual(count, 2)
+        self.assertEqual(last.restaurant.id, self.restaurant_1.id)
+        self.assertEqual(last.user.id, self.user.id)
+        self.assertEqual(last.content, "HALO2")
