@@ -24,7 +24,7 @@
                       <div class="card-footer">
                         <form action="{% url 'restaurants:likes' restaurant.id review.id %}" method="post">
                           {% csrf_token %}
-                          {{ review.likes }}
+                          <h4>{{ review.likes_count }} いいね！</h4>
                           {% if user != AnonymousUser and review|is_liked:user %}
                             <button type="submit" class="btn btn-info w-100 mt-3">いいね!</button>
                           {% else %}

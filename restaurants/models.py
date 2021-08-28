@@ -64,6 +64,9 @@ class Review(models.Model):
         else:
             return "☆" * MAX_SCORE
 
+    def likes_count(self):
+        return self.like_set.filter(status=1).count()
+
 class Like(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
