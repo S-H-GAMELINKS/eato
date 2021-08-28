@@ -63,7 +63,7 @@ class RestaurantViewTestCase(TestCase):
         client = Client()
         client.force_login(self.user)
         url = reverse('restaurants:reviews', kwargs={'restaurant_id': self.restaurant_1.id})
-        response = client.post(url, data={'content': 'HALO2'})
+        response = client.post(url, data={'content': 'HALO2', 'score': '5'})
         self.assertEqual(response.status_code, 302)
         count = Review.objects.all().count()
         last = Review.objects.last()
@@ -71,6 +71,7 @@ class RestaurantViewTestCase(TestCase):
         self.assertEqual(last.restaurant.id, self.restaurant_1.id)
         self.assertEqual(last.user.id, self.user.id)
         self.assertEqual(last.content, "HALO2")
+        self.assertEqual(last.score, 5)
 
     def test_restaurants_likes_view_url_with_anonymous_user(self):
         url = reverse('restaurants:likes', kwargs={'restaurant_id': self.restaurant_1.id, 'review_id': self.review_1.id})

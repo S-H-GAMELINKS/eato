@@ -64,7 +64,7 @@ def reviews(request, restaurant_id=id):
         if request.user.is_anonymous:
             return redirect('restaurants:detail', restaurant_id=restaurant.id)
 
-        review = Review.objects.create(user=current_user, restaurant=restaurant, content=request.POST.get('content'))
+        review = Review.objects.create(user=current_user, restaurant=restaurant, content=request.POST.get('content'), score=request.POST.get('score'))
         review.save()
 
         return redirect('restaurants:detail', restaurant_id=restaurant.id)
