@@ -2,7 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.utils.functional import SimpleLazyObject
 from django.contrib.auth.models import User, AnonymousUser
-from restaurants.models import Restaurant, Favorite, Review
+from restaurants.models import Restaurant, Favorite, Review, Like
 from restaurants.views import favorites
 
 class RestaurantViewTestCase(TestCase):
@@ -12,6 +12,7 @@ class RestaurantViewTestCase(TestCase):
         super(RestaurantViewTestCase, self).setUp()
         self.user = User.objects.get(pk=1)
         self.restaurant_1 = Restaurant.objects.get(pk=1)
+        self.review_1 = Review.objects.get(pk=1)
         self.assert_name = self.restaurant_1.name
         self.assert_address = self.restaurant_1.address
         self.assert_tel_number = self.restaurant_1.tel_number
@@ -70,3 +71,23 @@ class RestaurantViewTestCase(TestCase):
         self.assertEqual(last.restaurant.id, self.restaurant_1.id)
         self.assertEqual(last.user.id, self.user.id)
         self.assertEqual(last.content, "HALO2")
+
+    def test_restaurants_likes_view_url_with_anonymous_user(self):
+        url = reverse('restaurants:likes', kwargs={'restaurant_id': self.restaurant_1.id, 'review_id': self.review_1.id})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, 302)
+        count = Review.objects.all().count()
+        self.assertEqual(count, 1)
+
+    def test_restaurants_likes_view_url_with_login_user(self):
+        client = Client()
+        client.force_login(self.user)
+        url = reverse('restaurants:likes', kwargs={'restaurant_id': self.restaurant_1.id, 'review_id': self.review_1.id})
+        response = client.post(url)
+        self.assertEqual(response.status_code, 302)
+        count = Like.objects.all().count()
+        last = Like.objects.last()
+        self.assertEqual(count, 1)
+        self.assertEqual(last.restaurant.id, self.restaurant_1.id)
+        self.assertEqual(last.user.id, self.user.id)
+        self.assertEqual(last.review.id, self.review_1.id)
