@@ -37,3 +37,31 @@ class Review(models.Model):
     content = models.TextField(max_length=500);
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+
+    def is_liked(self, user):
+        like = self.like_set.filter(user=user).first()
+
+        if like.status != 0:
+            return True
+        else:
+            return False
+
+class Like(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, null=True)
+    status = models.IntegerField(null=True)
+
+    def is_liked(self, user, restaurant, review):
+        if self.user == user and self.restaurant == restaurant and self.review == review and self.status != 0:
+            return True
+        else:
+            return False
+
+    def like(self):
+        self.status = 1
+        self.save()
+
+    def unlike(self):
+        self.status = 0
+        self.save()
