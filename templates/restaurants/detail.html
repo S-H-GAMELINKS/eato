@@ -59,8 +59,11 @@
                 </tbody>
             </table>
 
+            {% if user.is_authenticated %}
             <button type="button" class="btn btn-success w-100 mt-3" data-toggle="modal" data-target="#reviewModal">レビューを書く</button>
-
+            {% else %}
+            <button type="button" class="btn btn-success w-100 mt-3" data-toggle="modal" data-target="#accountCreateModal">レビューを書く</button>
+            {% endif %}
             {% if user.is_authenticated %}
             <form action="{% url 'restaurants:favorites' restaurant.id %}" method="post">
               {% csrf_token %}
