@@ -25,6 +25,7 @@
           <div class="card" style="width: 18rem;">
               <img src="{{ MEDIA_URL }}{{ restaurant.image }}">
               <div class="card-body">
+                <p>平均評価: {{ restaurant.review_avg_score }}</p>
                 <h5 class="card-title">{{ restaurant.name }}</h5>
                 <p class="card-text">{{ restaurant.address }}</p>
                 <a href="{% url 'restaurants:detail' restaurant.id %}" class="btn btn-primary">お店詳細へ</a>
