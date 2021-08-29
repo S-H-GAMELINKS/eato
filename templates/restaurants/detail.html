@@ -30,7 +30,7 @@
                         <form action="{% url 'restaurants:likes' restaurant.id review.id %}" method="post">
                           {% csrf_token %}
                           <h4>{{ review.likes_count }} いいね！</h4>
-                          {% if review|is_liked:user %}
+                          {% if user != AnonymousUser and review|is_liked:user %}
                             <button type="submit" class="btn btn-info w-100 mt-3">いいね!を取り消す</button>                            
                           {% else %}
                             <button type="submit" class="btn btn-info w-100 mt-3">いいね!</button>
@@ -51,6 +51,10 @@
                   <tr>
                     <th scope="row">店名</th>
                     <td>{{ restaurant.name }}</td>
+                  </tr>
+                  <tr>
+                    <th>平均評価</th>
+                    <td>{{ restaurant.review_avg_score }}</td>
                   </tr>
                   <tr>
                     <th scope="row">住所</th>
