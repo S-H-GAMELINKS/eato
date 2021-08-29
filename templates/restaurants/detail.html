@@ -26,14 +26,18 @@
                         <p class="card-text">{{review.content}}</p>
                       </div>
                       <div class="card-footer">
+                        {% if user.is_authenticated %}
                         <form action="{% url 'restaurants:likes' restaurant.id review.id %}" method="post">
                           {% csrf_token %}
                           <h4>{{ review.likes_count }} いいね！</h4>
-                          {% if user != AnonymousUser and review|is_liked:user %}
+                          {% if review|is_liked:user %}
                             <button type="submit" class="btn btn-info w-100 mt-3">いいね!を取り消す</button>                            
                           {% else %}
                             <button type="submit" class="btn btn-info w-100 mt-3">いいね!</button>
                           {% endif %}
+                        {% else %}
+                        <button class="btn btn-info w-100 mt-3" data-toggle="modal" data-target="#accountCreateModal">いいね!</button>
+                        {% endif %}
                         </form>
                       </div>
                   </div>
