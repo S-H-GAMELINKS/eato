@@ -42,8 +42,8 @@ class AccountViewTestCase(TestCase):
         url = reverse('accounts:mypage_edit')
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Name')
-        self.assertContains(response, 'Email')
+        self.assertContains(response, 'ユーザーネーム')
+        self.assertContains(response, 'メール')
         self.assertContains(response, self.user.username)
         self.assertContains(response, self.user.email)
 
