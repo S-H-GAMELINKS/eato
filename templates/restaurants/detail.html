@@ -22,6 +22,15 @@
                       <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
                       {% endif %}
                       <div class="card-body">
+                        <!-- 28行目でiconをクリックするとユーザーの詳細画面へ移動させたい -->
+                        {% if user.profile.icon != "" %}
+                        <img id="icon_preview" src="{{user.profile.icon}}" style="width:30px;height:30px;" />
+                        <!-- <a href=""><image src="{{user.profile.icon}}" alt="投稿者詳細画面へ"></image></a> -->
+                        <!-- user.profile.iconへ移動させたいが、そのページmypage.htmlには編集とログアウトがあるので新しくその部分のないページを作るのか、もしくはその部分が記載されないようなコードを書いたページへ移動するようになるのでしょうか？ -->
+                        {% else %}
+                        <img id="icon_preview" style="width:30px;height:30px;" />
+                        <!-- {{user.username}} これが表示されないのは何故か、ユーザーネームをアイコンの右側につけたかったです。-->
+                        {% endif %}
                         <p>評価: {{ review.score_star }}</p>
                         <p class="card-text">{{review.content}}</p>
                       </div>
