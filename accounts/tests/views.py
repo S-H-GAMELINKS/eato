@@ -28,6 +28,13 @@ class AccountViewTestCase(TestCase):
         self.assertContains(response, 'お気に入り')
         self.assertContains(response, 'クチコミレビュー')
         self.assertContains(response, '画像')
+        self.assertContains(response, '<h2>ユーザーネーム</h2>')
+        self.assertContains(response, '<h2>メール</h2>')
+        self.assertContains(response, '<h2>プロフィール</h2>')
+        self.assertContains(response, '<h2>プロフィール</h2>')
+        self.assertContains(response, '<h2>お気に入り</h2>')
+        self.assertContains(response, '<h2>クチコミ</h2>')
+        self.assertContains(response, 'ログアウト')
         self.assertContains(response, self.restaurant.name)
         self.assertContains(response, self.restaurant.address)
 
