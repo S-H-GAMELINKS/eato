@@ -7,31 +7,32 @@
 
 {% block content %}
 
-<h1>ログイン</h1>
-<br>
-{% get_providers as socialaccount_providers %}
-
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Googleで<a class="btn btn-primary" href="{{ signup_url }}" role="button">新規アカウント登録</a>または<a class="btn btn-primary" href="" role="button">ログイン</a>{% endblocktrans %}</p>
-
-<!-- <div class="socialaccount_ballot">
-
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
-
-</div> -->
+<div class="text-center">
+    <br>
+    <h1>ログイン</h1>
+    <br>
 
 {% get_providers as socialaccount_providers %}
-
 {% for provider in socialaccount_providers %}
-<div class="input-group">
-  <span class="input-group-addon addon-google">
-	<i class="fa fa-fw fa-2x fa-google fa-fw"></i>
-  </span>
-  <a class="btn btn-lg btn-block btn-google socialaccount_provider {{provider.id}}" href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"> Googleでサインイン</a>
+    <div class="input-group">
+        <span class="input-group-addon addon-google">
+        <i class="fa fa-fw fa-2x fa-google fa-fw"></i>
+        </span>
+        <a class="btn btn-primary btn-google socialaccount_provider {{provider.id}}" href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"> Googleでログイン、もしくはGoogleアカウント登録</a>
+    </div>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon addon-google">
+      <i class="fa fa-fw fa-2x fa-google fa-fw"></i>
+      </span>
+      <a class="btn btn-primary btn-google btn-block socialaccount_provider {{provider.id}}" href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"> Googleでログイン、もしくはGoogleアカウント登録</a>
+    </div>
+    <br>
+	  <div>
+        <button type="button" class="btn btn-primary">My button</button>
+    </div>
+
 </div>
 {% endfor %}
 
-{% endif %}
 {% endblock %}
