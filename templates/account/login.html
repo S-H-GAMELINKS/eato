@@ -9,22 +9,17 @@
 
 <div class="text-center">
     <br>
+    <br>
     <h1>ログイン</h1>
     <br>
-
+    <br>
+    <br>
+    <br>
 {% get_providers as socialaccount_providers %}
 {% for provider in socialaccount_providers %}
-    <!-- <div class="input-group">
-        <span class="input-group-addon addon-google">
-        <i class="fa fa-fw fa-2x fa-google fa-fw"></i>
-        </span>
-        <a class="btn btn-primary btn-google socialaccount_provider {{provider.id}}" href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"> Googleでログイン、もしくはGoogleアカウント登録</a>
-    </div>
-    <br> -->
     <div class="d-flex justify-content-center">
       <a href={% provider_login_url provider.id process=process scope=scope auth_params=auth_params %} class="btn btn-lg btn-primary">Googleでサインイン</a>
     </div> 
-
 </div>
 {% endfor %}
 
