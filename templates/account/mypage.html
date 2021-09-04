@@ -78,7 +78,7 @@
     <div class="tab-pane" id="review_images" role="tabpanel" aria-labelledby="reviews-tab">
       <div class="row">
         {% for review in review_list %}
-          <div class="col-4 mt-4">
+          <div class="col-4 mt-4 d-flex justify-content-center">
             {% if review.has_image_p %}
             <img src="{{ review.image  }}" class="img-fluid">
             {% endif %}
