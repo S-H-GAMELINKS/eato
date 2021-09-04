@@ -19,7 +19,7 @@
     </li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="tab-pane active h-100" id="profile" role="tabpanel" aria-labelledby="profile-tab">
       <div class="d-flex justify-content-center mt-4">
         {% if user.profile.icon != "" %}
         <img src="{{ user.profile.icon }}" class="rounded-circle" style="width:300px;height:300px;">
@@ -40,7 +40,7 @@
         <a class="btn btn-primary w-25" href="{% url 'accounts:mypage_edit' %}">編集</a>
       </div>
     </div>
-    <div class="tab-pane" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+    <div class="tab-pane h-100" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
         <h2>お気に入り</h2>
         <div class="row">
           {% for favorite in favorite_list %}
@@ -57,7 +57,7 @@
           {% endfor %}
         </div>
     </div>
-    <div class="tab-pane" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+    <div class="tab-pane h-100" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
       <h2>クチコミ</h2>
       <div class="row">
         {% for review in review_list %}
@@ -75,7 +75,7 @@
         {% endfor %}
       </div>
     </div>
-    <div class="tab-pane" id="review_images" role="tabpanel" aria-labelledby="reviews-tab">
+    <div class="tab-pane h-100" id="review_images" role="tabpanel" aria-labelledby="reviews-tab">
       <div class="row">
         {% for review in review_list %}
           <div class="col-4 mt-4 d-flex justify-content-center">
@@ -95,6 +95,9 @@
     {% endif %}
     <button type="submit" class="btn btn-danger">ログアウト</button>
   </form>
+
+  <hr class="my-3 mt-5 mb-5">
+
   </div>
 
   <script>
