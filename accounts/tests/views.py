@@ -28,10 +28,6 @@ class AccountViewTestCase(TestCase):
         self.assertContains(response, 'お気に入り')
         self.assertContains(response, 'クチコミレビュー')
         self.assertContains(response, '画像')
-        self.assertContains(response, '<h2>ユーザーネーム</h2>')
-        self.assertContains(response, '<h2>メール</h2>')
-        self.assertContains(response, '<h2>プロフィール</h2>')
-        self.assertContains(response, '<h2>プロフィール</h2>')
         self.assertContains(response, '<h2>お気に入り</h2>')
         self.assertContains(response, '<h2>クチコミ</h2>')
         self.assertContains(response, 'ログアウト')
@@ -68,7 +64,6 @@ class AccountViewTestCase(TestCase):
         user = User.objects.get(pk=1)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(user.username, 'user2')
-        self.assertEqual(user.email, 'user2@example.com')
         self.assertEqual(user.profile.bio, 'HALO2')
 
     def test_accounts_mypage_detail(self):
@@ -76,4 +71,3 @@ class AccountViewTestCase(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, self.user.username)
-        self.assertContains(response, self.user.email)
