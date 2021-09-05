@@ -1,0 +1,7 @@
+<a href="/">Topページへ</a>
+{% if not user.is_authenticated %}
+<span>,</span>
+<a href="/accounts/login">
+  ログインページへ
+</a>
+{% endif %}

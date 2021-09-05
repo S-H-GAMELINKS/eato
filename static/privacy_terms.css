@@ -1,0 +1,9 @@
+.private,.terms{
+  min-width: 760px;
+  margin: 50px 100px;
+}
+.private_box,.terms_box{
+  background: #eff5f6;
+  border: 5px solid #e5eeef;
+  padding: 20px;
+}   
