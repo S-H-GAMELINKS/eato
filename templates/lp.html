@@ -19,15 +19,16 @@
           <h2 class="text-center">登録されているお店</h2>
         </div>
         {% for restaurant in restaurant_list %}
-          <div class="col-4 mt-4">
-            <div class="card" style="width: 18rem;">
+          <div class="col-4 mt-4 d-flex justify-content-center">
+            <div class="card w-100">
               {% if restaurant.image != NULL %}
               <img src="{{ MEDIA_URL }}{{ restaurant.image }}" class="img-fluid">
+              {% else %}
+              <svg class="bd-placeholder-img image-fluid h-50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="45%" y="50%" fill="#dee2e6" dy=".3em">No Image</text></svg>
               {% endif %}
               <div class="card-body">
                 <p>平均評価: {{ restaurant.review_avg_score }}</p>
                 <h5 class="card-title">{{ restaurant.name }}</h5>
-                <p class="card-text">{{ restaurant.address }}</p>
                 <a href="{% url 'restaurants:detail' restaurant.id %}" class="btn btn-primary">お店詳細へ</a>
               </div>
             </div>
@@ -46,9 +47,13 @@
         <h2 class="text-center">クチコミレビュー</h2>
       </div>
       {% for review in review_list %}
-        <div class="col-4 mt-4">
-          <div class="card" style="width: 18rem;">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+        <div class="col-4 mt-4 d-flex justify-content-center">
+          <div class="card w-100">
+            {% if review.image != NULL %}
+            <img src="{{ review.image }}" class="img-fluid h-50">
+            {% else %}
+            <svg class="bd-placeholder-img image-fluid h-50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="45%" y="50%" fill="#dee2e6" dy=".3em">No Image</text></svg>
+            {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ review.restaurant.name }}</h5>
               <p class="card-text">{{ review.content }}</p>
