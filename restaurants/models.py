@@ -9,6 +9,8 @@ class Restaurant(models.Model):
     address = models.CharField(max_length=255)
     tel_number = models.CharField(max_length=20)
     image = models.ImageField(null=True)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
 
     class Meta:
         verbose_name_plural = "飲食店"
