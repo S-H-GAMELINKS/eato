@@ -2,7 +2,20 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-5" onload="setUserGeo();">
+
+  <form method="get" action="{% url 'restaurants:search_with_current_location' %}">
+    <input id="latitude" type="hidden" name="latitude">
+    <input id="longitude" type="hidden" name="longitude">
+    <select name="range">
+      <option value="1">半径1km以内</option>
+      <option value="2">半径2km以内</option>
+      <option value="3">半径3km以内</option>
+      <option value="4">半径4km以内</option>
+      <option value="5">半径5km以内</option>
+    </select>
+    <button class="btn btn-primary">現在地周辺のお店を探す</button>
+  </form>
 
   <form method="get" action="{% url 'restaurants:index' %}">
       <div class="form-row">
@@ -86,5 +99,25 @@
 
   <hr class="my-3 mt-5 mb-5">
 </div>
+
+<script>
+  const latitude = document.getElementById("latitude")
+  const longitude = document.getElementById("longitude")
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+
+  function showPosition(position) {
+    latitude.value = position.coords.latitude;
+    longitude.value = position.coords.longitude;
+  }
+
+  getLocation();
+</script>
 
 {% endblock %}
