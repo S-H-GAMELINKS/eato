@@ -7,7 +7,7 @@
       <p class="lead">美味しいお店探しはEatoで簡単検索！</p>
       <hr class="my-4">
       <p>Eatoは「美味しいお店を選べる」をテーマに、お住まいのエリア、人気のお店も簡単検索。ユーザーのレビューを元に新しいお店の発掘、お気に入りのお店の登録などもできるグルメサイトです。</p>
-      <a class="btn btn-primary btn-lg" href="#" role="button">Eatoの使い方はこちら</a>
+      <a class="btn btn-primary btn-lg" href="#howto" role="button">Eatoの使い方はこちら</a>
       <a class="btn btn-danger btn-lg" href="/accounts/login" role="button">新規アカウント作成はこちら</a>
     </div>
   </div>
@@ -67,15 +67,17 @@
       {% endfor %}
       {% endif %}
     </div>
+    <a id="howto"></a>
+
 
     <hr class="my-3 mt-5 mb-5">
 
     <div class="row">
       <div class="col-7">
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <h1 class="display-4">お気に入り登録しよう！</h1>
+        <p class="lead">気に入ったお店があったらお気に入り登録し、いつでも簡単にお店の情報を見る事ができます。</p>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>  
+        <p> 操作はお店詳細画面の右端に表示されている「お気に入りへの追加」を押すだけ</p>  
       </div>
       <div class="col-5 mx-auto">
         <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b06e88c3a%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b06e88c3a%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.125%22%20y%3D%22261.2828125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
@@ -89,10 +91,10 @@
         <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b06e88c3a%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b06e88c3a%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.125%22%20y%3D%22261.2828125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
       </div>
       <div class="col-7">
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <h1 class="display-4">レビューを投稿しよう！</h1>
+        <p class="lead">利用したお店のレビューを書いてみんなにお知らせましょう。実際に食べた料理を投稿してみんなに見てもらいましょう。</p>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>  
+        <p> お店詳細画面の右端に表示されている「レビューを書く」ボタンを押し、ポップアップウィンドウの項目を記入して「投稿」ボタンを押すだけ。</p>  
       </div>
     </div>
 
@@ -100,8 +102,36 @@
 
     <div class="row">
       <div class="col-7">
-        <h1 class="display-4">Hello, world!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+        <h1 class="display-4">レビューに👍しよう！</h1>
+        <p class="lead">良いレビューがあったら👍することができます。</p>
+        <hr class="my-4">
+        <p> お店詳細画面に表示されているコメントの「いいね！」をクリックするだけ。</p>  
+      </div>
+      <div class="col-5 mx-auto">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b06e88c3a%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b06e88c3a%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.125%22%20y%3D%22261.2828125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+      </div>
+    </div>
+
+    <hr class="my-3 mt-5 mb-5">
+
+    <div class="row">
+      <div class="col-5 mx-auto">
+        <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17b06e88c3a%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17b06e88c3a%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.125%22%20y%3D%22261.2828125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+      </div>
+      <div class="col-7">
+        <h1 class="display-4">アルバムを作ろう！</h1>
+        <p class="lead">投稿した画像は一覧として見る事ができます。いろんな画像を投稿して自分だけのアルバムを作ることができます。</p>
+        <hr class="my-4">
+        <p> レビューから投稿した画像はマイベージの画像タブで全て確認できます。</p>  
+      </div>
+    </div>
+
+    <hr class="my-3 mt-5 mb-5">
+
+    <div class="row">
+      <div class="col-7">
+        <h1 class="display-4">近くのお店を探そう！</h1>
+        <p class="lead">今いる場所から近くにあるお店を確認することができます。</p>
         <hr class="my-4">
         <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>  
       </div>
