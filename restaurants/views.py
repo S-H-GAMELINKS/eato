@@ -115,3 +115,17 @@ def likes(request, restaurant_id=id, review_id=id):
         return redirect('restaurants:detail', restaurant_id=restaurant.id)
     else:
         return redirect('restaurants:detail', restaurant_id=restaurant.id)
+
+def search_with_current_location(request):
+    restaurants_list = Restaurant.objects.order_by('id').filter(latitude__isnull=False,longitude__isnull=False)
+    result_list = []
+
+    range = float(request.GET.get("range"))
+
+    user_location_info = (request.GET.get("latitude"), request.GET.get("longitude"))
+
+    for restaurant in restaurants_list:
+        if restaurant.check_distance(user_location_info, range):
+            result_list.append(restaurant)
+    
+    return render(request, 'restaurants/search_with_current_location.html', {'restaurant_list': result_list})
