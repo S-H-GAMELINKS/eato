@@ -80,7 +80,9 @@
         {% for review in review_list %}
           <div class="col-4 mt-4 d-flex justify-content-center">
             {% if review.has_image_p %}
-            <img src="{{ review.image  }}" class="img-fluid">
+            <a href="{% url 'restaurants:detail' review.restaurant_id %}">
+              <img src="{{ review.image  }}" class="img-fluid">
+            </a>
             {% endif %}
           </div>
         {% endfor %}
