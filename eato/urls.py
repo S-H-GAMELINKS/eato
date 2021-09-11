@@ -36,4 +36,3 @@ urlpatterns = [
     path('privacy', privacy, name='privacy'),
     path('terms', terms, name='terms')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
