@@ -6,3 +6,4 @@ django-import-export
 pillow
 boto3
 django-storages
+geopy
