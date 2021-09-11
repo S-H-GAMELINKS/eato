@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models import Avg
+from geopy import distance
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -21,6 +22,13 @@ class Restaurant(models.Model):
             return 0
         else:
             return review_avg_score['score__avg']
+
+    def check_distance(self, user_location_info, range):
+        restaurant_location_info = (self.latitude, self.longitude)
+        if distance.distance(user_location_info, restaurant_location_info).km <= range:
+            return True
+        else:
+            return False
 
 class Favorite(models.Model):
     user= models.ForeignKey(User, on_delete=models.CASCADE)
