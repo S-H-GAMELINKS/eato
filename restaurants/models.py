@@ -1,3 +1,6 @@
+import os
+from django.utils.html import mark_safe
+from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models import Avg
@@ -29,6 +32,17 @@ class Restaurant(models.Model):
             return True
         else:
             return False
+
+    def image_tag(self):
+        if self.image is None or self.image.name is None:
+            return mark_safe('<svg class="bd-placeholder-img img-fluid" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="45%" y="50%" fill="#dee2e6" dy=".3em">No Image</text></svg>')
+        elif self.image.name.count('http') > 0:
+            return mark_safe('<img src="%s" height="150" class="img-fluid" />' % (self.image))
+        else:
+            if os.getenv('APP_ENV') == 'production':
+                return mark_safe('<img src="%s" height="150" class="img-fluid" />' % (self.image))
+            else:
+                return mark_safe('<img src="%s%s" height="150" class="img-fluid" />' % (settings.MEDIA_URL, self.image))
 
 class Favorite(models.Model):
     user= models.ForeignKey(User, on_delete=models.CASCADE)
