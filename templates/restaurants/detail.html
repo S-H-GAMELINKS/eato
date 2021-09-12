@@ -7,11 +7,7 @@
 
 <div class="container mt-5">
     <div class="d-flex justify-content-center h-75 w-100">
-      {% if restaurant.image != None %}
-      <img src="{{ MEDIA_URL }}{{ restaurant.image }}" class="img-fluid">
-      {% else %}
-      <svg class="bd-placeholder-img card-img-top" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="45%" y="50%" fill="#dee2e6" dy=".3em">No Image</text></svg>
-      {% endif %}
+      {{ restaurant.image_tag }}
     </div>
 
     <div class="row">

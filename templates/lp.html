@@ -22,11 +22,7 @@
         {% for restaurant in restaurant_list %}
           <div class="col-4 mt-4 d-flex justify-content-center">
             <div class="card w-100">
-              {% if restaurant.image != NULL %}
-              <img src="{{ MEDIA_URL }}{{ restaurant.image }}" class="img-fluid">
-              {% else %}
-              <svg class="bd-placeholder-img image-fluid h-50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image cap"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="45%" y="50%" fill="#dee2e6" dy=".3em">No Image</text></svg>
-              {% endif %}
+              {{ restaurant.image_tag }}
               <div class="card-body">
                 <p>平均評価: {{ restaurant.review_avg_score }}</p>
                 <h5 class="card-title">{{ restaurant.name }}</h5>
