@@ -19,10 +19,18 @@
             <a class="text-white" href="/accounts/mypage">
               マイページ
             </a>
+            <form method="post" action="{% url 'account_logout' %}">
+              {% csrf_token %}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+              {% endif %}
+              <button type="submit">ログアウト</button>
+            </form>
             {% else %}
             <a class="text-white" href="/accounts/login">
               ログイン
             </a>
+            
             {% endif %}
         </nav>
         {% block content %}{% endblock %}
