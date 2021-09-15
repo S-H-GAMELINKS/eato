@@ -25,14 +25,12 @@
 {% get_providers as socialaccount_providers %}
 {% for provider in socialaccount_providers %}
     <div class="d-flex justify-content-center">
-      <a href={% provider_login_url provider.id process=process scope=scope auth_params=auth_params %} class="btn btn-lg btn-danger">Googleで新規アカウント登録、またはログイン</a>
-    </div> 
-
-    <!-- <div>
-      {% load static%}
-      <img src="{%static "img/btn_google_signin_dark_pressed_web@2x.png"%}" width="100">
-    </div> -->
+        {% load static%}
+        <a href={% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}><img src="{% static '/imges/btn_google_signin_dark_normal_web@2x.png' %}" alt="google_btn" width="200" />
+        </a>
+    </div>
 </div>
+<br>
 {% endfor %}
 
 {% endblock %}
