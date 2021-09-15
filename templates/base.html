@@ -12,18 +12,27 @@
     <body>
       <div id="app">
         <nav class="navbar navbar-dark bg-primary">
-            <a class="navbar-brand" href="/">
-              Eato
-            </a>
+          <a class="navbar-brand" href="/">
+            Eato
+          </a>
+          <div class="text-right d-flex justify-align-center">
             {% if user.is_authenticated %}
-            <a class="text-white" href="/accounts/mypage">
+            <a class="text-white mr-3" href="/accounts/mypage">
               マイページ
             </a>
+            <a class="text-white mr-3" id="logout">ログアウト</a>
+            <form method="post" id="logout-form"action="{% url 'account_logout' %}">
+              {% csrf_token %}
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+              {% endif %}
+            </form>
             {% else %}
             <a class="text-white" href="/accounts/login">
               ログイン
             </a>
-            {% endif %}
+            {% endif %}  
+          </div>
         </nav>
         {% block content %}{% endblock %}
 
@@ -33,5 +42,15 @@
             <p>© 2017-2018 Company, Inc. · <a href="/privacy">プライバシー</a> · <a href="/terms">利用規約</a></p>
         </footer>
       </div>
+
+      <script>
+        $(function () {
+          $('#myTab li:last-child a').tab('show')
+        })
+    
+        $('#logout').click(function() {
+          $('#logout-form').submit();
+        });
+      </script>
     </body>
 </html>
