@@ -7,30 +7,21 @@
 
 {% block content %}
 
-<div class="text-center">
-    <br>
-    <br>
-    <h1>ログイン</h1>
-    <br>
-    <h3>Eatoにログインすると飲食店のレビューや画像を投稿できたり、お気に入りも追加できます</h3>
-    <h3>自分だけのお気に入りをみんなにシェアしましょう</h3>
-    <br>
-    <br>
-    <h4>下のボタンをクリックしてGoogleで新規アカウント登録、またはログイン</h4>
-    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
-      <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0z"/>
-    </svg>
-    <br>
-    <br>
-{% get_providers as socialaccount_providers %}
-{% for provider in socialaccount_providers %}
+<div class="container h-75">
+    <h1 class="text-center">ログイン</h1>
+    <div class="text-center">
+        <p>Eatoにログインすると飲食店のレビューや画像を投稿できたり、お気に入りも追加できます</p>
+        <p>自分だけのお気に入りをみんなにシェアしましょう</p>
+        <p>下のボタンをクリックしてGoogleで新規アカウント登録、またはログイン</p>
+    </div>
+    {% get_providers as socialaccount_providers %}
+    {% for provider in socialaccount_providers %}
     <div class="d-flex justify-content-center">
         {% load static%}
         <a href={% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}><img src="{% static '/imges/btn_google_signin_dark_normal_web@2x.png' %}" alt="google_btn" width="200" />
         </a>
     </div>
+    {% endfor %}
 </div>
-<br>
-{% endfor %}
 
 {% endblock %}

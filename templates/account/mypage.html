@@ -90,14 +90,6 @@
     </div>
   </div>
 
-  <form method="post" action="{% url 'account_logout' %}">
-    {% csrf_token %}
-    {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-    {% endif %}
-    <button type="submit" class="btn btn-danger">ログアウト</button>
-  </form>
-
   <hr class="my-3 mt-5 mb-5">
 
   </div>
