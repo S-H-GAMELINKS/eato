@@ -39,10 +39,7 @@ class Restaurant(models.Model):
         elif self.image.name.count('http') > 0:
             return mark_safe('<img src="%s" height="150" class="img-fluid" />' % (self.image))
         else:
-            if os.getenv('APP_ENV') == 'production':
-                return mark_safe('<img src="%s" height="150" class="img-fluid" />' % (self.image))
-            else:
-                return mark_safe('<img src="%s%s" height="150" class="img-fluid" />' % (settings.MEDIA_URL, self.image))
+            return mark_safe('<img src="%s%s" height="150" class="img-fluid" />' % (settings.MEDIA_URL, self.image))
 
 class Favorite(models.Model):
     user= models.ForeignKey(User, on_delete=models.CASCADE)
